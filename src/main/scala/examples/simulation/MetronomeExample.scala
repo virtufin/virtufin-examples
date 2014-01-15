@@ -1,3 +1,5 @@
+package examples.simulation
+
 import java.util.Calendar
 import play.api.libs.iteratee.Iteratee
 import scala.concurrent.{Await, ExecutionContext}

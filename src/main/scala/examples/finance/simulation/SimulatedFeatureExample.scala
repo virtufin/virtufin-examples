@@ -4,15 +4,14 @@ import virtufin.finance.simulation._
 import virtufin.finance.product.feature._
 import virtufin.finance.product._
 import virtufin.finance.{Time, Term}
-import virtufin.simulation.{SimultaneousEvents, AgentIdentifier}
-import virtufin.finance.simulation.trigger.{SettlementEvent, AccrualEnd}
+import virtufin.simulation.AgentIdentifier
+import virtufin.finance.simulation.trigger.AccrualEnd
 import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.collection.SortedSet
 import virtufin.util.{Day, Schedule}
 import java.util.Calendar
 import virtufin.finance.scenario.Quotes
-import virtufin.simulation
 
 object SimulatedFeatureExample {
   def main(args: Array[String]) {
