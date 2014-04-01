@@ -10,16 +10,17 @@ import ExecutionContext.Implicits.global
 
 object MetronomeExample {
   def main(args: Array[String]) {
-    // Metronomes (Enumerators)
     // Metronome emitting 0, 1, 2,...
+    // emitting events as fast as possible
     val delayInt = Duration.Zero
     val nMax = 10000
     def metronomeInt = Metronome(delayInt, n => n > nMax)
-    // Metronome emitting from start date half yearly dates for 10 years
-    val delayDay = 0.1 second
+    // Metronome emitting from start date monthly dates for 1 years
+    // events emitted every second
+    val delayDay = 1 second
     val startDate = Day(2014, Calendar.NOVEMBER, 1)
     import FiniteSchedule._
-    val schedule = Schedule(Term.M6) until Term.Y10
+    val schedule = Schedule(Term.M1) until Term.Y1
     val dates = schedule.generateTimes(startDate)
     def metronomeDay = Metronome(dates, delayDay)
 
@@ -27,7 +28,7 @@ object MetronomeExample {
     // adds all values emitted by metronomeInt
     val adder = Iteratee.fold[Int, Int](0)((l: Int, x: Int) => l + x)
     // prints days
-    val printerDay = Iteratee.foreach[Day](d => println(d)).mapDone(_=>println("OK!"))
+    val printerDay = Iteratee.foreach[Day](d => println(s"${new java.util.Date()} -> $d")).map(_=>println("Done"))
     // stores all values emitted by the metronomeDay
     val collectorDays = Iteratee.fold(List[Day]())((l: List[Day], x: Day) => l.::(x))
 
