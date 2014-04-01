@@ -12,5 +12,6 @@ libraryDependencies ++= Seq(
 )
 
 resolvers ++= Seq(
-    "Virtufin Snapshots" at "http://repo.haenerconsulting.com/content/repositories/snapshots"
+    "Virtufin snapshots" at "http://repo.haenerconsulting.com/content/repositories/snapshots",
+    "Typesafe releases" at "http://repo.typesafe.com/typesafe/releases/"
 )
