@@ -8,7 +8,6 @@ import virtufin.simulation._
 import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
 
-
 object MetronomeExample {
   def main(args: Array[String]) {
     // Metronomes (Enumerators)
@@ -19,11 +18,12 @@ object MetronomeExample {
     // Metronome emitting from start date half yearly dates for 10 years
     val delayDay = 0.1 second
     val startDate = Day(2014, Calendar.NOVEMBER, 1)
-    val schedule = FiniteSchedule(Schedule(Term.M6), Term.Y10)
+    import FiniteSchedule._
+    val schedule = Schedule(Term.M6) until Term.Y10
     val dates = schedule.generateTimes(startDate)
     def metronomeDay = Metronome(dates, delayDay)
 
-    // Iteratees
+    // Iteratees:
     // adds all values emitted by metronomeInt
     val adder = Iteratee.fold[Int, Int](0)((l: Int, x: Int) => l + x)
     // prints days
