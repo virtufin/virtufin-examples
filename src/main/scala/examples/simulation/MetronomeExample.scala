@@ -7,8 +7,9 @@ import virtufin.util._
 import virtufin.simulation._
 import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
+import examples.Example
 
-object MetronomeExample {
+object MetronomeExample extends Example{
   def main(args: Array[String]) {
     // Metronome emitting 0, 1, 2,...
     // emitting events as fast as possible
@@ -28,15 +29,16 @@ object MetronomeExample {
     // adds all values emitted by metronomeInt
     val adder = Iteratee.fold[Int, Int](0)((l: Int, x: Int) => l + x)
     // prints days
-    val printerDay = Iteratee.foreach[Day](d => println(s"${new java.util.Date()} -> $d")).map(_=>println("Done"))
+    val printerDay = Iteratee.foreach[Day](d => output(s"${new java.util.Date()} -> $d")).map(_=>println("Done"))
     // stores all values emitted by the metronomeDay
     val collectorDays = Iteratee.fold(List[Day]())((l: List[Day], x: Day) => l.::(x))
 
     // Run the Iteratees
     val resultAdd=Await.result(metronomeInt |>>> adder, 20 seconds)
-    println("Sum is "+resultAdd)
+    output("Sum is "+resultAdd)
     Await.result(metronomeDay |>>> printerDay, 20 seconds)
     val resultCollectDays = Await.result(metronomeDay |>>> collectorDays, 20 seconds)
-    println("Days collected: "+resultCollectDays.reverse)
+    output("Days collected: "+resultCollectDays.reverse)
+    System.exit(0)
   }
 }

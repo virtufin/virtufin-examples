@@ -3,8 +3,9 @@ package examples.finance.scenario
 import virtufin.finance.product.Currency._
 
 import virtufin.finance.scenario.{ForeignExchangeRate,ForeignExchangeRates}
+import examples.Example
 
-object ForeignExchangeRatesExample {
+object ForeignExchangeRatesExample extends Example{
   def main(args: Array[String]) {
     val referenceCurrency = USD
     // price quoted referenceCurrency of a unit of some currency
@@ -13,6 +14,6 @@ object ForeignExchangeRatesExample {
     // get cross
     val cross = ForeignExchangeRate(AUD, EUR)
     val value = quotes.get(cross)
-    println(s"$cross: $value")
+    output(s"$cross: $value")
   }
 }
