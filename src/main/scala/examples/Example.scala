@@ -6,7 +6,8 @@ import java.io.{FileOutputStream, OutputStreamWriter, BufferedWriter, File}
  * All examples should extend this class.
  * This class handles the output in the examples.
  */
-abstract class Example(outputDirectory:String = Example.outputDirectory) {
+abstract class Example extends App{
+  private val outputDirectory=Example.outputDirectory
   private val directory=new File(outputDirectory)
   if(!directory.exists()){
     directory.mkdir()
@@ -23,15 +24,17 @@ abstract class Example(outputDirectory:String = Example.outputDirectory) {
   private val writer=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))
   /**
    * Prints message to stdout and appends
-   * @param message
+   * @param obj
    * @return
    */
-  def output(message: String) =  {
+  def output(obj: Any) =  {
+    val message = obj.toString
     writer.append(message+"\n")
     writer.flush()
     println(message)
   }
 }
+
 object Example{
   val defaultOutputDirectory = "output"
   var outputDirectory = defaultOutputDirectory
