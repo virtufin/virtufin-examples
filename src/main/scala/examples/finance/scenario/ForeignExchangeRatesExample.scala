@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2011-2014 Haener Consulting. All rights reserved.
+ */
+
 package examples.finance.scenario
 
 import virtufin.finance.product.Currency._
