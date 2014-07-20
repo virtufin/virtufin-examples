@@ -4,11 +4,11 @@ version := "1.0-Snapshots"
 
 organization := "com.haenerconsulting"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
-    "com.haenerconsulting" % "virtufin-core" % "1.0-SNAPSHOT",
-    "com.haenerconsulting" % "virtufin-base" % "1.0-SNAPSHOT"
+    "com.haenerconsulting" %% "virtufin-core" % "1.0-SNAPSHOT",
+    "com.haenerconsulting" %% "virtufin-base" % "1.0-SNAPSHOT"
 )
 
 resolvers ++= Seq(
