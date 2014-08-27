@@ -39,13 +39,13 @@ object SimulatedFeatureExample extends Example {
 
   trait GetNameForMyAgent extends SimulatedFeature {
     self: MyAgent =>
-    def createMessageProcessor(agent: AgentType): MessageProcessor = new MessageProcessor {
+    abstract override def createMessageProcessor(agent: AgentType): MessageProcessor = MessageProcessor(super.createMessageProcessor(agent), new MessageProcessor {
       def processMessage(msg: Any): Iterable[Any] = msg match {
         case GetName => List[Any](self.name)
         case _ => List.empty[Any]
 
       }
-    }
+    })
   }
 
   /**
