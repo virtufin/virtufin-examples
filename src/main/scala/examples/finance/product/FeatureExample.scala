@@ -4,11 +4,11 @@ import java.util.Calendar
 
 import examples.Example
 import virtufin.finance.product._
-import virtufin.finance.product.feature.{Maturing, Settling, Optional, Notional}
+import virtufin.finance.product.feature._
 import virtufin.util.Day
 
 object FeatureExample extends Example {
-  val assetPosition = Position(100.0,Stock("IBM"))
+  val assetPosition = Position(100.0, Stock("IBM"))
   val cashPosition = Cash(189361.20, Currency.USD)
   val settlementDate = Day(2020, Calendar.JUNE, 1)
   val buyerPortfolio = PortfolioIdentifier("nostro")
@@ -30,6 +30,7 @@ object FeatureExample extends Example {
   val featureIds = FeatureInfoExtractor.defaultFeatureIdentifiers
   val featureInfoExtractor = FeatureInfoExtractor.defaultFeatureInfoExtractor
   featureIds.foreach(i=>println(i+"->"+featureInfoExtractor.getInfo(trade,i)))
-  val infos = featureInfoExtractor.getInfos(trade, featureIds:_*)
-  infos.foreach(i=>output(s"${i._1} -> ${i._2}"))
+  val infos = featureInfoExtractor.getInfos(trade, featureIds: _*)
+  infos.foreach(i => output(s"${i._1} -> ${i._2}"))
+
 }

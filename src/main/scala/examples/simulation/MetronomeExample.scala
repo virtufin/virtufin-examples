@@ -5,6 +5,7 @@
 package examples.simulation
 
 import java.util.Calendar
+import akka.actor.ActorSystem
 import play.api.libs.iteratee.Iteratee
 import scala.concurrent.{Await, ExecutionContext}
 import virtufin.util._
@@ -18,6 +19,7 @@ object MetronomeExample extends Example {
   // emitting events as fast as possible
   val delayInt = Duration.Zero
   val nMax = 10000
+  implicit val system = ActorSystem.create("MetronomeExample")
 
   def metronomeInt = Metronome(delayInt, n => n > nMax)
 
@@ -47,5 +49,5 @@ object MetronomeExample extends Example {
   Await.result(metronomeDay |>>> printerDay, 20 seconds)
   val resultCollectDays = Await.result(metronomeDay |>>> collectorDays, 20 seconds)
   output("Days collected: " + resultCollectDays.reverse)
-  System.exit(0)
+  system.shutdown()
 }
