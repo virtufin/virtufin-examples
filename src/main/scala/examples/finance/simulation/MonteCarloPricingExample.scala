@@ -198,7 +198,7 @@ object MonteCarloPricingExample extends Example {
 
   def values = cashflows map (c => value(c, t0, discountCurves))
 
-  // The price of the whole porfolio may now be obtained by aggregating the values
+  // The price of the whole portfolio may now be obtained by aggregating the values
   // This is left as an exercise to the reader
 
   // Output
