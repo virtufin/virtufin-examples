@@ -16,3 +16,7 @@ project/plugins/project/
 
 # IntelliJ specific
 .idea/
+*.iml
+
+# SublimeText specific
+build.sublime-workspace
