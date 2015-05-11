@@ -6,6 +6,7 @@ import akka.util.Timeout
 import examples.Example
 import virtufin.finance.simulation._
 import virtufin.finance.simulation.feature.{CompositeSimulatedFeature, StatelessCompositeSimulatedFeature}
+import virtufin.simulation.simulatable.MessageProcessor
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
