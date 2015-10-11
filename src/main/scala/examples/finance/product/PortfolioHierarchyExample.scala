@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2011-2015 Haener Consulting. All rights reserved.
+ */
+
 package examples.finance.product
 
 import examples.Example

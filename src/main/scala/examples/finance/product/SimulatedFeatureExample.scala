@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2011-2015 Haener Consulting. All rights reserved.
+ */
+
 package examples.finance.product
 
 import akka.actor.{ActorSystem, Props}
@@ -66,5 +70,7 @@ object SimulatedFeatureExample extends Example {
   r1.onComplete(r => output(s"$msg1 -> $r"))
   val msg2 = GetName
   val r2 = agent ? msg2
-  r2.onComplete(r => {output(s"$msg2 -> $r");system.shutdown(); System.exit(0)})
+  r2.onComplete(r => {
+    output(s"$msg2 -> $r"); system.shutdown(); System.exit(0)
+  })
 }
